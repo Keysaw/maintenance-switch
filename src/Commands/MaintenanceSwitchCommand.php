@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Brickx\MaintenanceSwitch\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class MaintenanceSwitchCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'maintenance-switch';
 
     public $description = 'My command';
 
