@@ -6,14 +6,14 @@ use Illuminate\Console\Command;
 
 class MaintenanceSwitchCommand extends Command
 {
-    public $signature = 'maintenance-switch';
+	public $signature = 'maintenance-switch';
 
-    public $description = 'My command';
+	public $description = 'My command';
 
-    public function handle(): int
-    {
-        $this->comment('All done');
+	public function handle() : int
+	{
+		$this->comment('All done');
 
-        return self::SUCCESS;
-    }
+		return self::SUCCESS;
+	}
 }

@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Facade;
  */
 class MaintenanceSwitch extends Facade
 {
-    protected static function getFacadeAccessor()
-    {
-        return \Brickx\MaintenanceSwitch\MaintenanceSwitch::class;
-    }
+	protected static function getFacadeAccessor()
+	{
+		return \Brickx\MaintenanceSwitch\MaintenanceSwitch::class;
+	}
 }

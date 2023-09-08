@@ -9,5 +9,5 @@ use Livewire\Features\SupportTesting\Testable;
  */
 class TestsMaintenanceSwitch
 {
-    //
+	//
 }

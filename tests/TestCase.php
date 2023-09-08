@@ -4,6 +4,7 @@ namespace Brickx\MaintenanceSwitch\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
+use Brickx\MaintenanceSwitch\MaintenanceSwitchServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
@@ -18,47 +19,46 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
-use Brickx\MaintenanceSwitch\MaintenanceSwitchServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
+	protected function setUp() : void
+	{
+		parent::setUp();
 
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Brickx\\MaintenanceSwitch\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
-        );
-    }
+		Factory::guessFactoryNamesUsing(
+			fn (string $modelName) => 'Brickx\\MaintenanceSwitch\\Database\\Factories\\'.class_basename($modelName).'Factory'
+		);
+	}
 
-    protected function getPackageProviders($app)
-    {
-        return [
-            ActionsServiceProvider::class,
-            BladeCaptureDirectiveServiceProvider::class,
-            BladeHeroiconsServiceProvider::class,
-            BladeIconsServiceProvider::class,
-            FilamentServiceProvider::class,
-            FormsServiceProvider::class,
-            InfolistsServiceProvider::class,
-            LivewireServiceProvider::class,
-            NotificationsServiceProvider::class,
-            SpatieLaravelSettingsPluginServiceProvider::class,
-            SpatieLaravelTranslatablePluginServiceProvider::class,
-            SupportServiceProvider::class,
-            TablesServiceProvider::class,
-            WidgetsServiceProvider::class,
-            MaintenanceSwitchServiceProvider::class,
-        ];
-    }
+	protected function getPackageProviders($app)
+	{
+		return [
+			ActionsServiceProvider::class,
+			BladeCaptureDirectiveServiceProvider::class,
+			BladeHeroiconsServiceProvider::class,
+			BladeIconsServiceProvider::class,
+			FilamentServiceProvider::class,
+			FormsServiceProvider::class,
+			InfolistsServiceProvider::class,
+			LivewireServiceProvider::class,
+			NotificationsServiceProvider::class,
+			SpatieLaravelSettingsPluginServiceProvider::class,
+			SpatieLaravelTranslatablePluginServiceProvider::class,
+			SupportServiceProvider::class,
+			TablesServiceProvider::class,
+			WidgetsServiceProvider::class,
+			MaintenanceSwitchServiceProvider::class,
+		];
+	}
 
-    public function getEnvironmentSetUp($app)
-    {
-        config()->set('database.default', 'testing');
+	public function getEnvironmentSetUp($app)
+	{
+		config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_maintenance-switch_table.php.stub';
-        $migration->up();
-        */
-    }
+		/*
+		$migration = include __DIR__.'/../database/migrations/create_maintenance-switch_table.php.stub';
+		$migration->up();
+		*/
+	}
 }
