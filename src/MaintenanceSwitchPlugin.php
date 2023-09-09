@@ -2,8 +2,11 @@
 
 namespace Brickx\MaintenanceSwitch;
 
+use Brickx\MaintenanceSwitch\Livewire\ToggleMaintenance;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Illuminate\Support\Str;
+use Livewire\Livewire;
 
 class MaintenanceSwitchPlugin implements Plugin
 {
@@ -14,7 +17,12 @@ class MaintenanceSwitchPlugin implements Plugin
 
 	public function register(Panel $panel) : void
 	{
-		//
+		Livewire::component('maintenance-switch::toggle-maintenance', ToggleMaintenance::class);
+
+		$panel->renderHook(
+			Str::start(config('maintenance-switch.render_hook') ?? 'global-search.before', 'panels::'),
+			fn () => view('maintenance-switch::switcher')
+		);
 	}
 
 	public function boot(Panel $panel) : void
