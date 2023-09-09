@@ -2,16 +2,10 @@
 
 namespace Brickx\MaintenanceSwitch;
 
-use Brickx\MaintenanceSwitch\Commands\MaintenanceSwitchCommand;
-use Brickx\MaintenanceSwitch\Testing\TestsMaintenanceSwitch;
-use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
-use Filament\Support\Assets\Css;
-use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
-use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -36,7 +30,7 @@ class MaintenanceSwitchServiceProvider extends PackageServiceProvider
 					->publishConfigFile()
 					->publishMigrations()
 					->askToRunMigrations()
-					->askToStarRepoOnGitHub('brickx/maintenance-switch');
+					->askToStarRepoOnGitHub('keysaw/maintenance-switch');
 			});
 
 		$configFileName = $package->shortName();
@@ -86,9 +80,6 @@ class MaintenanceSwitchServiceProvider extends PackageServiceProvider
 				], 'maintenance-switch-stubs');
 			}
 		}
-
-		// Testing
-		Testable::mixin(new TestsMaintenanceSwitch());
 	}
 
 	protected function getAssetPackageName() : ?string
@@ -102,9 +93,9 @@ class MaintenanceSwitchServiceProvider extends PackageServiceProvider
 	protected function getAssets() : array
 	{
 		return [
-			// AlpineComponent::make('maintenance-switch', __DIR__ . '/../resources/dist/components/maintenance-switch.js'),
-			Css::make('maintenance-switch-styles', __DIR__.'/../resources/dist/maintenance-switch.css'),
-			Js::make('maintenance-switch-scripts', __DIR__.'/../resources/dist/maintenance-switch.js'),
+			/*AlpineComponent::make('maintenance-switch', __DIR__ . '/../resources/dist/components/maintenance-switch.js'),*/
+			/*Css::make('maintenance-switch-styles', __DIR__.'/../resources/dist/maintenance-switch.css'),*/
+			/*Js::make('maintenance-switch-scripts', __DIR__.'/../resources/dist/maintenance-switch.js'),*/
 		];
 	}
 
@@ -113,9 +104,7 @@ class MaintenanceSwitchServiceProvider extends PackageServiceProvider
 	 */
 	protected function getCommands() : array
 	{
-		return [
-			MaintenanceSwitchCommand::class,
-		];
+		return [];
 	}
 
 	/**
