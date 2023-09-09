@@ -2,19 +2,20 @@
 	"name": "brickx/maintenance-switch",
 	"description": "Simple plugin to toggle maintenance mode from Filament Panels.",
 	"keywords": [
-		"Brickx",
-		"laravel",
-		"maintenance-switch"
+		"BRICKX",
+		"Laravel",
+		"Filament",
+		"Maintenance"
 	],
-	"homepage": "https://github.com/brickx/maintenance-switch",
+	"homepage": "https://github.com/Keysaw/maintenance-switch",
 	"support": {
-		"issues": "https://github.com/brickx/maintenance-switch/issues",
-		"source": "https://github.com/brickx/maintenance-switch"
+		"issues": "https://github.com/Keysaw/maintenance-switch/issues",
+		"source": "https://github.com/Keysaw/maintenance-switch"
 	},
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "Keysaw",
+			"name": "Florian PLAMONT",
 			"email": "keysaw@brickx.fr",
 			"role": "Developer"
 		}
@@ -22,21 +23,21 @@
 	"require": {
 		"php": "^8.1",
 		"filament/filament": "^3.0",
-		"spatie/laravel-package-tools": "^1.15.0",
-		"illuminate/contracts": "^10.0"
+		"spatie/laravel-package-tools": "^1.16",
+		"illuminate/contracts": "^9.0|^10.0"
 	},
 	"require-dev": {
-		"laravel/pint": "^1.0",
+		"laravel/pint": "^1.13",
 		"nunomaduro/collision": "^7.9",
-		"orchestra/testbench": "^8.0",
-		"pestphp/pest": "^2.0",
-		"pestphp/pest-plugin-arch": "^2.0",
-		"pestphp/pest-plugin-laravel": "^2.0"
+		"orchestra/testbench": "^8.10",
+		"pestphp/pest": "^2.18",
+		"pestphp/pest-plugin-arch": "^2.3",
+		"pestphp/pest-plugin-laravel": "^2.2",
+		"pestphp/pest-plugin-livewire": "^2.1"
 	},
 	"autoload": {
 		"psr-4": {
-			"Brickx\\MaintenanceSwitch\\": "src/",
-			"Brickx\\MaintenanceSwitch\\Database\\Factories\\": "database/factories/"
+			"Brickx\\MaintenanceSwitch\\": "src/"
 		}
 	},
 	"autoload-dev": {
@@ -53,18 +54,14 @@
 	"config": {
 		"sort-packages": true,
 		"allow-plugins": {
-			"pestphp/pest-plugin": true,
-			"phpstan/extension-installer": true
+			"pestphp/pest-plugin": true
 		}
 	},
 	"extra": {
 		"laravel": {
 			"providers": [
 				"Brickx\\MaintenanceSwitch\\MaintenanceSwitchServiceProvider"
-			],
-			"aliases": {
-				"MaintenanceSwitch": "Brickx\\MaintenanceSwitch\\Facades\\MaintenanceSwitch"
-			}
+			]
 		}
 	},
 	"minimum-stability": "dev",
