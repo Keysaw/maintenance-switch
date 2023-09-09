@@ -16,10 +16,11 @@
 	backupStaticProperties="false"
 >
 	<testsuites>
-		<testsuite name="Brickx Test Suite">
-			<directory>tests</directory>
+		<testsuite name="Feature">
+			<directory>tests/Feature</directory>
 		</testsuite>
 	</testsuites>
+
 	<coverage>
 		<report>
 			<html outputDirectory="build/coverage" />
@@ -27,12 +28,14 @@
 			<clover outputFile="build/logs/clover.xml" />
 		</report>
 	</coverage>
-	<logging>
-		<junit outputFile="build/report.junit.xml" />
-	</logging>
+
 	<source>
 		<include>
 			<directory suffix=".php">./src</directory>
 		</include>
 	</source>
+
+	<php>
+		<env name="APP_KEY" value="base64:ZXZ0djF3aWtiNjJuamxmc3huN2g4emhqcXBpNHJvdjQ=" />
+	</php>
 </phpunit>

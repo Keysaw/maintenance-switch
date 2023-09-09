@@ -10,28 +10,38 @@ use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
 use Filament\Infolists\InfolistsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;
-use Filament\SpatieLaravelSettingsPluginServiceProvider;
-use Filament\SpatieLaravelTranslatablePluginServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Gate;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
 class TestCase extends Orchestra
 {
+	public function getEnvironmentSetUp($app) : void
+	{
+		config()->set('database.default', 'testing');
+
+		Artisan::call('up');
+	}
+
 	protected function setUp() : void
 	{
 		parent::setUp();
+
+		Gate::define('toggle-maintenance', fn (User $user) => $user->id === 1);
 
 		Factory::guessFactoryNamesUsing(
 			fn (string $modelName) => 'Brickx\\MaintenanceSwitch\\Database\\Factories\\'.class_basename($modelName).'Factory'
 		);
 	}
 
-	protected function getPackageProviders($app)
+	protected function getPackageProviders($app) : array
 	{
 		return [
 			ActionsServiceProvider::class,
@@ -43,22 +53,10 @@ class TestCase extends Orchestra
 			InfolistsServiceProvider::class,
 			LivewireServiceProvider::class,
 			NotificationsServiceProvider::class,
-			SpatieLaravelSettingsPluginServiceProvider::class,
-			SpatieLaravelTranslatablePluginServiceProvider::class,
 			SupportServiceProvider::class,
 			TablesServiceProvider::class,
 			WidgetsServiceProvider::class,
 			MaintenanceSwitchServiceProvider::class,
 		];
-	}
-
-	public function getEnvironmentSetUp($app)
-	{
-		config()->set('database.default', 'testing');
-
-		/*
-		$migration = include __DIR__.'/../database/migrations/create_maintenance-switch_table.php.stub';
-		$migration->up();
-		*/
 	}
 }
