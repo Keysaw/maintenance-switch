@@ -14,7 +14,7 @@
 		'action' => $isDown ? __('maintenance-switch::general.deactivate') : __('maintenance-switch::general.activate')
    ]) }}"
 >
-	<x-dynamic-component :component="config('maintenance-switch.icon') ?? 'heroicon-m-beaker'" class="h-5 w-5" />
+	<x-filament::icon :icon="config('maintenance-switch.icon') ?? 'heroicon-m-beaker'" class="h-5 w-5" />
 
 	@unless(config('maintenance-switch.tiny_toggle'))
 		<span>{{ $isDown ? __('maintenance-switch::general.down') : __('maintenance-switch::general.up') }}</span>
