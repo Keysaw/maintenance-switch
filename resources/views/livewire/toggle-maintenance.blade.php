@@ -3,7 +3,7 @@
 	x-show="visible"
 	type="button"
 	@class([
-		'flex h-10 items-center justify-center gap-3 rounded-lg px-3 py-2 transition',
+		'fi-ms-btn flex h-10 items-center justify-center gap-3 rounded-lg px-3 py-2 transition',
 		'text-white bg-primary-500' => $isDown,
 		'text-gray-700 hover:bg-gray-100 focus:bg-gray-100 dark:text-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/5' => !$isDown,
 	 ])
