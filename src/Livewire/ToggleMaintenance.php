@@ -47,14 +47,15 @@ class ToggleMaintenance extends Component
 
 		$this->isDown = app()->isDownForMaintenance();
 
+		$notificationBody = $this->isDown
+			? __('maintenance-switch::general.success.body.down', ['secret' => $this->secret])
+			: __('maintenance-switch::general.success.body.up');
+
 		Notification::make()
 			->title(__('maintenance-switch::general.success.title', [
 				'status' => $this->isDown ? __('maintenance-switch::general.activated') : __('maintenance-switch::general.deactivated'),
 			]))
-			->body($this->isDown
-				? __('maintenance-switch::general.success.body.down', ['secret' => $this->secret])
-				: __('maintenance-switch::general.success.body.up')
-			)
+			->body(Str::inlineMarkdown($notificationBody))
 			->seconds($this->isDown ? 12 : 6)
 			->success()
 			->send();
