@@ -2,6 +2,18 @@
 
 All notable changes to `maintenance-switch` will be documented in this file.
 
+## 1.0.2 - 2024-04-02
+
+### What's Changed
+
+* Added: laravel 11 contracts by @james2doyle in https://github.com/Keysaw/maintenance-switch/pull/7
+
+### New Contributors
+
+* @james2doyle made their first contribution in https://github.com/Keysaw/maintenance-switch/pull/7
+
+**Full Changelog**: https://github.com/Keysaw/maintenance-switch/compare/1.0.1...1.0.2
+
 ## 1.0.1 - 2024-01-20
 
 ### What's Changed
