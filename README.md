@@ -74,23 +74,63 @@ public function panel(Panel $panel) : Panel
 }
 ```
 
-An optional step (but **highly recommended**) is to modify the `App\Http\Middleware\PreventRequestsDuringMaintenance` class to add the following code:
+Laravel 11 does not come with the `PreventRequestsDuringMaintenance` middleware any more. You can create one with:
+
+```bash
+php artisan make:middleware PreventRequestsDuringMaintenance
+```
+
+Then fill it with the content below:
 
 ```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Middleware;
+
+use Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance as Middleware;
 use Illuminate\Foundation\Http\MaintenanceModeBypassCookie;
 use Illuminate\Http\RedirectResponse;
 
-...
-
-protected function bypassResponse(string $secret) : RedirectResponse
+class PreventRequestsDuringMaintenance extends Middleware
 {
-    return redirect('admin')->withCookie(
-        MaintenanceModeBypassCookie::create($secret)
-    );
+    /**
+     * The URIs that should be reachable while maintenance mode is enabled.
+     *
+     * @var array
+     */
+    protected $except = [];
+
+    protected function bypassResponse(string $secret): RedirectResponse
+    {
+        // Optional: redirect to the Filament dashboard route when a secret is present, but of course, you can redirect to any URL you want.
+        return redirect(route('filament.admin.pages.dashboard'))->withCookie(
+            MaintenanceModeBypassCookie::create($secret)
+        );
+    }
 }
 ```
 
-This is because Laravel's default maintenance middleware will redirect to the `/` route, which feels weird for the user. Of course, you can redirect to any URL you want.
+If you are using other versions of Laravel, you can just edit the existing one.
+
+In Laravel 11, you also need to add this middleware to the relevant routes. Consider using route groups to control which routes to apply the middleware to.
+
+Here is an example of `./routes/web.php`:
+
+```php
+<?php
+
+use App\Http\Middleware\PreventRequestsDuringMaintenance;
+use Illuminate\Support\Facades\Route;
+
+// added the middleware but only to this group, the Filament routes are unaffected
+Route::middleware([PreventRequestsDuringMaintenance::class])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
+```
 
 ## Usage
 
