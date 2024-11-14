@@ -9,10 +9,7 @@ class ToggleMaintenanceJob
 {
 	use Dispatchable;
 
-	public function __construct(public ?string $secret = null, public int|bool $refresh = false)
-	{
-
-	}
+	public function __construct(public ?string $secret = null, public int|bool $refresh = false) {}
 
 	public function handle() : void
 	{
