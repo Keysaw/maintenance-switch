@@ -91,9 +91,9 @@ class MaintenanceSwitchServiceProvider extends PackageServiceProvider
 	protected function getAssets() : array
 	{
 		return [
-			/*AlpineComponent::make('maintenance-switch', __DIR__ . '/../resources/dist/components/maintenance-switch.js'),*/
-			/*Css::make('maintenance-switch-styles', __DIR__.'/../resources/dist/maintenance-switch.css'),*/
-			/*Js::make('maintenance-switch-scripts', __DIR__.'/../resources/dist/maintenance-switch.js'),*/
+			/* AlpineComponent::make('maintenance-switch', __DIR__ . '/../resources/dist/components/maintenance-switch.js'), */
+			/* Css::make('maintenance-switch-styles', __DIR__.'/../resources/dist/maintenance-switch.css'), */
+			/* Js::make('maintenance-switch-scripts', __DIR__.'/../resources/dist/maintenance-switch.js'), */
 		];
 	}
 
