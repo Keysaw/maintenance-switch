@@ -60,7 +60,9 @@ class ToggleMaintenance extends Component
 			->success()
 			->send();
 
-		return $this->isDown ? redirect($this->secret) : null;
+		return $this->isDown ?
+			redirect()->setIntendedUrl(url()->previousPath())->to($this->secret) :
+			null;
 	}
 
 	public function render() : View
